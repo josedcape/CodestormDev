@@ -5,9 +5,9 @@ requires = [
 ]
 
 [tool.poetry]
-name = "openhands-ai"
+name = "codestorm-ai"
 version = "0.42.0"
-description = "OpenHands: Code Less, Make More"
+description = "CODESTORM: Agente de Desarrollo Autónomo"
 authors = [ "OpenHands" ]
 license = "MIT"
 readme = "README.md"

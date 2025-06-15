@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="./docs/static/img/logo.png" alt="Logo" width="200">
-  <h1 align="center">OpenHands: Code Less, Make More</h1>
+  <h1 align="center">CODESTORM: Agente de Desarrollo Autónomo</h1>
 </div>
 
 
@@ -32,7 +32,7 @@
   <hr>
 </div>
 
-Welcome to OpenHands (formerly OpenDevin), a platform for software development agents powered by AI.
+Welcome to CODESTORM (formerly OpenHands), a platform for software development agents.powered by AI.
 
 OpenHands agents can do anything a human developer can: modify code, run commands, browse the web,
 call APIs, and yes—even copy code snippets from StackOverflow.
