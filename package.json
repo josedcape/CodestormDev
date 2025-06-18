@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite --config vite.config.local.ts --port 5173",
     "dev:public": "vite --config vite.config.public.ts --host 0.0.0.0 --port 5173",
-    "build": "vite build",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
     "build:public": "vite build --config vite.config.public.ts",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -23,7 +23,8 @@
     "verify": "node verify-api-setup.js",
     "type-check": "tsc --noEmit",
     "test": "echo \"Tests will be implemented in future versions\" && exit 0",
-    "render-postbuild": "npm install --prefix frontend && cd frontend && npm run build"
+    "render-postbuild": "npm install --prefix frontend && cd frontend && npm run build",
+    "build:frontend": "npx vite build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",
@@ -63,9 +64,4 @@
     "eslint-plugin-react-refresh": "^0.4.11",
     "globals": "^15.9.0",
     "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.3.0",
-    "vite": "^5.4.2"
-  }
-}
+    "tailwindcss":
