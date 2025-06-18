@@ -22,7 +22,8 @@
     "test:apis": "node test-final-apis.js",
     "verify": "node verify-api-setup.js",
     "type-check": "tsc --noEmit",
-    "test": "echo \"Tests will be implemented in future versions\" && exit 0"
+    "test": "echo \"Tests will be implemented in future versions\" && exit 0",
+    "render-postbuild": "npm install --prefix frontend && cd frontend && npm run build"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",
