@@ -1,123 +1,220 @@
-# Contributing
+# 🤝 Contribuir a CODESTORM
 
-Thanks for your interest in contributing to OpenHands! We welcome and appreciate contributions.
+¡Gracias por tu interés en contribuir a CODESTORM! Este documento te guiará a través del proceso de contribución.
 
-## Understanding OpenHands's CodeBase
+## 🎯 Cómo Contribuir
 
-To understand the codebase, please refer to the README in each module:
-- [frontend](./frontend/README.md)
-- [evaluation](./evaluation/README.md)
-- [openhands](./openhands/README.md)
-   - [agenthub](./openhands/agenthub/README.md)
-   - [server](./openhands/server/README.md)
+### 📋 Antes de Empezar
 
-## Setting up Your Development Environment
+1. **Fork** el repositorio
+2. **Clona** tu fork localmente
+3. **Configura** el entorno de desarrollo
+4. **Lee** la documentación técnica
 
-We have a separate doc [Development.md](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md) that tells you how to set up a development workflow.
+### 🔧 Configuración del Entorno
 
-## How Can I Contribute?
+```bash
+# Clonar tu fork
+git clone https://github.com/tu-usuario/codestorm.git
+cd codestorm
 
-There are many ways that you can contribute:
+# Instalar dependencias
+npm install
 
-1. **Download and use** OpenHands, and send [issues](https://github.com/All-Hands-AI/OpenHands/issues) when you encounter something that isn't working or a feature that you'd like to see.
-2. **Send feedback** after each session by [clicking the thumbs-up thumbs-down buttons](https://docs.all-hands.dev/usage/feedback), so we can see where things are working and failing, and also build an open dataset for training code agents.
-3. **Improve the Codebase** by sending [PRs](#sending-pull-requests-to-openhands) (see details below). In particular, we have some [good first issues](https://github.com/All-Hands-AI/OpenHands/labels/good%20first%20issue) that may be ones to start on.
+# Configurar variables de entorno
+cp .env.example .env
+# Edita .env con tus claves API
 
-## What Can I Build?
-Here are a few ways you can help improve the codebase.
+# Verificar configuración
+npm run verify
+```
 
-#### UI/UX
-We're always looking to improve the look and feel of the application. If you've got a small fix
-for something that's bugging you, feel free to open up a PR that changes the [`./frontend`](./frontend) directory.
+### 🚀 Proceso de Desarrollo
 
-If you're looking to make a bigger change, add a new UI element, or significantly alter the style
-of the application, please open an issue first, or better, join the #frontend channel in our Slack
-to gather consensus from our design team first.
+#### **1. Crear una Rama**
+```bash
+git checkout -b feature/nueva-funcionalidad
+# o
+git checkout -b fix/correccion-bug
+```
 
-#### Improving the agent
-Our main agent is the CodeAct agent. You can [see its prompts here](https://github.com/All-Hands-AI/OpenHands/tree/main/openhands/agenthub/codeact_agent).
+#### **2. Realizar Cambios**
+- Sigue las convenciones de código existentes
+- Agrega comentarios explicativos
+- Mantén los commits pequeños y enfocados
 
-Changes to these prompts, and to the underlying behavior in Python, can have a huge impact on user experience.
-You can try modifying the prompts to see how they change the behavior of the agent as you use the app
-locally, but we will need to do an end-to-end evaluation of any changes here to ensure that the agent
-is getting better over time.
+#### **3. Probar Cambios**
+```bash
+# Verificar que compile
+npm run build
 
-We use the [SWE-bench](https://www.swebench.com/) benchmark to test our agent. You can join the #evaluation
-channel in Slack to learn more.
+# Ejecutar linting
+npm run lint
 
-#### Adding a new agent
-You may want to experiment with building new types of agents. You can add an agent to [`openhands/agenthub`](./openhands/agenthub)
-to help expand the capabilities of OpenHands.
+# Probar funcionalidad
+npm run test:apis
+```
 
-#### Adding a new runtime
-The agent needs a place to run code and commands. When you run OpenHands on your laptop, it uses a Docker container
-to do this by default. But there are other ways of creating a sandbox for the agent.
+#### **4. Commit y Push**
+```bash
+git add .
+git commit -m "feat: agregar nueva funcionalidad X"
+git push origin feature/nueva-funcionalidad
+```
 
-If you work for a company that provides a cloud-based runtime, you could help us add support for that runtime
-by implementing the [interface specified here](https://github.com/All-Hands-AI/OpenHands/blob/main/openhands/runtime/base.py).
+#### **5. Crear Pull Request**
+- Describe claramente los cambios
+- Incluye capturas de pantalla si es relevante
+- Referencia issues relacionados
 
-#### Testing
-When you write code, it is also good to write tests. Please navigate to the [`./tests`](./tests) folder to see existing test suites.
-At the moment, we have two kinds of tests: [`unit`](./tests/unit) and [`integration`](./evaluation/integration_tests). Please refer to the README for each test suite. These tests also run on GitHub's continuous integration to ensure quality of the project.
+## 📝 Convenciones de Código
 
-## Sending Pull Requests to OpenHands
+### **TypeScript/JavaScript**
+- Usa TypeScript para nuevos archivos
+- Sigue las reglas de ESLint configuradas
+- Usa nombres descriptivos para variables y funciones
+- Agrega tipos explícitos cuando sea necesario
 
-You'll need to fork our repository to send us a Pull Request. You can learn more
-about how to fork a GitHub repo and open a PR with your changes in [this article](https://medium.com/swlh/forks-and-pull-requests-how-to-contribute-to-github-repos-8843fac34ce8).
+### **React Components**
+- Usa componentes funcionales con hooks
+- Implementa PropTypes o interfaces TypeScript
+- Mantén componentes pequeños y enfocados
+- Usa Tailwind CSS para estilos
 
-### Pull Request title
-As described [here](https://github.com/commitizen/conventional-commit-types/blob/master/index.json), a valid PR title should begin with one of the following prefixes:
+### **Commits**
+Usa el formato de [Conventional Commits](https://www.conventionalcommits.org/):
 
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation only changes
-- `style`: Changes that do not affect the meaning of the code (white space, formatting, missing semicolons, etc.)
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `perf`: A code change that improves performance
-- `test`: Adding missing tests or correcting existing tests
-- `build`: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-- `ci`: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
-- `chore`: Other changes that don't modify src or test files
-- `revert`: Reverts a previous commit
+```
+tipo(scope): descripción
 
-For example, a PR title could be:
-- `refactor: modify package path`
-- `feat(frontend): xxxx`, where `(frontend)` means that this PR mainly focuses on the frontend component.
+feat: nueva funcionalidad
+fix: corrección de bug
+docs: cambios en documentación
+style: cambios de formato
+refactor: refactorización de código
+test: agregar o modificar tests
+chore: tareas de mantenimiento
+```
 
-You may also check out previous PRs in the [PR list](https://github.com/All-Hands-AI/OpenHands/pulls).
+## 🎯 Áreas de Contribución
 
-### Pull Request description
-- If your PR is small (such as a typo fix), you can go brief.
-- If it contains a lot of changes, it's better to write more details.
+### **🤖 Sistema de IA**
+- Mejoras en prompts de agentes
+- Optimización de parámetros
+- Nuevos modelos de IA
+- Algoritmos de distribución
 
-If your changes are user-facing (e.g. a new feature in the UI, a change in behavior, or a bugfix)
-please include a short message that we can add to our changelog.
+### **🔧 Funcionalidades**
+- Nuevos agentes especializados
+- Herramientas de desarrollo
+- Mejoras en la interfaz
+- Optimizaciones de rendimiento
 
-## How to Make Effective Contributions
+### **📚 Documentación**
+- Guías de usuario
+- Documentación técnica
+- Ejemplos de uso
+- Tutoriales
 
-### Opening Issues
+### **🧪 Testing**
+- Tests unitarios
+- Tests de integración
+- Tests de rendimiento
+- Validación de APIs
 
-If you notice any bugs or have any feature requests please open them via the [issues page](https://github.com/All-Hands-AI/OpenHands/issues). We will triage based on how critical the bug is or how potentially useful the improvement is, discuss, and implement the ones that the community has interest/effort for.
+## 🐛 Reportar Bugs
 
-Further, if you see an issue you like, please leave a "thumbs-up" or a comment, which will help us prioritize.
+### **Antes de Reportar**
+1. Busca en issues existentes
+2. Verifica que sea reproducible
+3. Prueba con la última versión
 
-### Making Pull Requests
+### **Información a Incluir**
+- **Descripción clara** del problema
+- **Pasos para reproducir** el bug
+- **Comportamiento esperado** vs actual
+- **Entorno**: OS, Node.js, navegador
+- **Logs de error** si están disponibles
+- **Capturas de pantalla** si es relevante
 
-We're generally happy to consider all pull requests with the evaluation process varying based on the type of change:
+### **Template de Bug Report**
+```markdown
+## 🐛 Descripción del Bug
+[Descripción clara y concisa]
 
-#### For Small Improvements
+## 🔄 Pasos para Reproducir
+1. Ir a '...'
+2. Hacer clic en '...'
+3. Ver error
 
-Small improvements with few downsides are typically reviewed and approved quickly.
-One thing to check when making changes is to ensure that all continuous integration tests pass, which you can check before getting a review.
+## ✅ Comportamiento Esperado
+[Qué debería pasar]
 
-#### For Core Agent Changes
+## ❌ Comportamiento Actual
+[Qué está pasando]
 
-We need to be more careful with changes to the core agent, as it is imperative to maintain high quality. These PRs are evaluated based on three key metrics:
+## 🖥️ Entorno
+- OS: [Windows/macOS/Linux]
+- Node.js: [versión]
+- Navegador: [Chrome/Firefox/Safari]
+- CODESTORM: [versión]
 
-1. **Accuracy**
-2. **Efficiency**
-3. **Code Complexity**
+## 📋 Información Adicional
+[Logs, capturas, etc.]
+```
 
-If it improves accuracy, efficiency, or both with only a minimal change to code quality, that's great we're happy to merge it in!
-If there are bigger tradeoffs (e.g. helping efficiency a lot and hurting accuracy a little) we might want to put it behind a feature flag.
-Either way, please feel free to discuss on github issues or slack, and we will give guidance and preliminary feedback.
+## 💡 Solicitar Funcionalidades
+
+### **Template de Feature Request**
+```markdown
+## 🚀 Funcionalidad Solicitada
+[Descripción clara de la funcionalidad]
+
+## 🎯 Problema que Resuelve
+[Qué problema o necesidad aborda]
+
+## 💭 Solución Propuesta
+[Cómo debería funcionar]
+
+## 🔄 Alternativas Consideradas
+[Otras opciones evaluadas]
+
+## 📊 Beneficios
+[Por qué sería útil]
+```
+
+## 🔍 Proceso de Review
+
+### **Criterios de Aceptación**
+- ✅ Código limpio y bien documentado
+- ✅ Tests pasan correctamente
+- ✅ No rompe funcionalidad existente
+- ✅ Sigue convenciones del proyecto
+- ✅ Documentación actualizada si es necesario
+
+### **Proceso de Review**
+1. **Revisión automática** (CI/CD)
+2. **Revisión de código** por maintainers
+3. **Testing** en diferentes entornos
+4. **Aprobación** y merge
+
+## 🏆 Reconocimiento
+
+Los contribuidores serán reconocidos en:
+- Lista de contribuidores en README
+- Releases notes
+- Documentación del proyecto
+
+## 📞 Contacto
+
+- **Issues**: Para bugs y feature requests
+- **Discussions**: Para preguntas generales
+- **Email**: [contacto@botidinamix.ai]
+
+## 📄 Licencia
+
+Al contribuir, aceptas que tus contribuciones serán licenciadas bajo la misma licencia MIT del proyecto.
+
+---
+
+¡Gracias por ayudar a hacer CODESTORM aún mejor! 🚀
